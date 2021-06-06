@@ -1,14 +1,11 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        //run("5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0");
 
         if (args.length == 2 && args[1].equals("fromBash")) {
             run(args[0]);
-            return ;
         }
         else {
             Scanner scanner = new Scanner(System.in);

@@ -1,4 +1,3 @@
-
 public class DoubleUtils {
 
     public static String doubleForPrint(double d) {
@@ -9,4 +8,3 @@ public class DoubleUtils {
         return Math.sqrt(d);
     }
 }
-//25 * X^2 - 10 * X^1 - 5 = 0

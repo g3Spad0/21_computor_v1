@@ -4,8 +4,6 @@ import java.util.List;
 public class Parser {
 
     public static List<Term> parse(String equation) {
-      //  equation = normalize(equation);
-
         char[] arr = equation.toCharArray();
         List<Term> terms = new ArrayList<>();
         int i = 0, j = 0;
@@ -31,27 +29,15 @@ public class Parser {
         return terms;
     }
 
-    private static String normalize(String equation) {
-        StringBuilder builder = new StringBuilder();
-        char[] arr = equation.toCharArray();
-
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == 'x') {
-                arr[i] = 'X';
-            }
-        }
-        return builder.toString();
-    }
-
     private static Term getTerm(char[] arr, int start, int end, boolean isLeft) {
         String curr = getCurrString(arr, start, end);
         char firstChar = '+';
         int degree = 0;
         double coef = 1;
 
-        if ((curr.charAt(0) == '+' || curr.charAt(0) == '-' || curr.charAt(0) == '=') && !Character.isDigit(curr.charAt(1))) {
+        if (curr.charAt(0) == '+' || curr.charAt(0) == '-' || curr.charAt(0) == '=') {
             firstChar = curr.charAt(0);
-            curr = curr.substring(2);
+            curr = curr.substring(1);
         }
 
         if (curr.contains("*")) {
@@ -67,13 +53,13 @@ public class Parser {
                 coef = Double.parseDouble(tmp[0].trim());
 
                 String[] tmp1 = tmp[1].split("\\^");
-                degree = Integer.parseInt(tmp1[1].trim());
+                degree = tmp1.length > 1 ? Integer.parseInt(tmp1[1].trim()) : 1;
             }
         }
         else {
             if (curr.contains("X")) {
                 String[] tmp = curr.split("\\^");
-                degree = Integer.parseInt(tmp[1].trim());
+                degree = tmp.length > 1 ? Integer.parseInt(tmp[1].trim()) : 1;
             }
             else {
                 coef = Double.parseDouble(curr.trim());
