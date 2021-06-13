@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Polynomial {
-    private List<Term> terms = new ArrayList<>();
+    private List<Term> terms;
 
     public Polynomial(String equation) {
         this.terms = Parser.parse(equation);
@@ -87,7 +87,7 @@ public class Polynomial {
             discriminant(a, b, c);
         }
         else if (b != 0) {
-            System.out.println("The polynomial degree is equals 1, here is 1 solution:");
+            System.out.println("The solution is:");
             System.out.println(DoubleUtils.doubleForPrint(-c / b));
         }
         else if (c != 0) {
@@ -98,15 +98,15 @@ public class Polynomial {
         }
     }
 
-    private static void discriminant(double a, double b, double c) {
+    private void discriminant(double a, double b, double c) {
         double discriminant = b * b - 4 * a * c;
 
         if (discriminant > 0) {
             System.out.println("Discriminant is strictly positive, the two solutions are:");
 
             double sqrt = DoubleUtils.sqrt(discriminant);
-            double first = (-b + sqrt) / (2 * a);
-            double second= (-b - sqrt) / (2 * a);
+            double first= (-b - sqrt) / (2 * a);
+            double second = (-b + sqrt) / (2 * a);
 
             System.out.println(DoubleUtils.doubleForPrint(first));
             System.out.println(DoubleUtils.doubleForPrint(second));

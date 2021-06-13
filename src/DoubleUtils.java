@@ -1,7 +1,12 @@
+import java.text.DecimalFormat;
+
 public class DoubleUtils {
 
     public static String doubleForPrint(double d) {
-        return d % 1 == 0 ? String.valueOf((long) d) : String.format("%.3f", d);
+        DecimalFormat df = new DecimalFormat("0");
+
+        df.setMaximumFractionDigits(6);
+        return df.format(d);
     }
 
     public static double sqrt(double x) {
@@ -13,16 +18,10 @@ public class DoubleUtils {
         while (abs(guess - x / guess) > epsilon * guess) {
             guess = (x / guess + guess) / 2.0;
         }
-        if (guess != Math.sqrt(x)) {
-            System.out.println("fddffddf");
-            throw new RuntimeException("fddffddf");
-        }
         return guess;
     }
 
     public static double abs(double a) {
         return (a <= 0.0D) ? 0.0D - a : a;
-    }//FFFF=1
+    }
 }
-
-//5*X^0 + 4*X + -9.3 * X^2=1*X^0
